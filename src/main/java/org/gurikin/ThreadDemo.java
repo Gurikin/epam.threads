@@ -1,7 +1,9 @@
 package org.gurikin;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Hello world!
@@ -21,7 +23,9 @@ public class ThreadDemo {
             // System.out.println("ThreadTalk-" + t + " is started");
         // }
 
-        threadsPoolDemo(2);
+        // threadsPoolDemo(2);
+
+        System.out.println(callableDemo());
     }
 
     public static void threadsPoolDemo(int poolSize) {
@@ -34,5 +38,19 @@ public class ThreadDemo {
         executorService.execute(new TalkThread());
         executorService.shutdown();
         while (!executorService.isTerminated()) {}
+    }
+
+    public static String callableDemo() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(new CallThread());
+        String result = "";
+        try {
+            result = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown(); //Stop executor. All threads will be done. After this cant run any threads from this executor.
+        // executor.shutdownNow(); //Stop executor and all threads.
+        return result;
     }
 }
