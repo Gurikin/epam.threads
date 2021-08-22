@@ -48,10 +48,20 @@ public class ThreadDemo {
         // ==================================
         Thread threadException = new ThreadException();
         threadException.start();
+        // Example when NOT main thread is interrupted by exception
+        // try {
+        //     TimeUnit.MILLISECONDS.sleep(100L);
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
+        // Example when main thread is interrupted by exception
         try {
-            TimeUnit.MILLISECONDS.sleep(100L);
+            TimeUnit.MILLISECONDS.sleep(20L);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+        if (Boolean.TRUE) {
+            throw new RuntimeException();
         }
         System.out.println("Main thread is end");
     }
