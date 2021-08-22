@@ -31,7 +31,7 @@ public class ThreadDemo {
         Thread talkThread = new Thread(new TalkThread());
         talkThread.setDaemon(true);
         walkThread.start();
-        talkThread.start();
+        talkThread.start(); //If talkTread is slowly than walkThread than talkThread will not be finished and will be interrupted by main thread
         System.out.println("Main thread is end");
     }
 
