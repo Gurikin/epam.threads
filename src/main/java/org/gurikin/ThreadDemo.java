@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Hello world!
@@ -11,27 +12,47 @@ import java.util.concurrent.Future;
  */
 public class ThreadDemo {
     public static void main(String[] args) {
-        // for (int t = 0; t < 5; t++) {
-            // int t = 1;
-            // System.out.println("Create threadWalk-" + t);
-            // Thread threadWalk = new WalkThread();
-            // threadWalk.start();
-            // System.out.println("ThreadWalk-" + t + " is started");
-            // System.out.println("Create threadTalk-" + t);
-            // Thread threadTalk = new Thread(new TalkThread());
-            // threadTalk.start();
-            // System.out.println("ThreadTalk-" + t + " is started");
-        // }
+        // ==================================
+        // Example of creating of threads by implements Runnable and extends Thread
+        // ==================================
+        /*for (int t = 0; t < 5; t++) {
+            int t = 1;
+            System.out.println("Create threadWalk-" + t);
+            Thread threadWalk = new WalkThread();
+            threadWalk.start();
+            System.out.println("ThreadWalk-" + t + " is started");
+            System.out.println("Create threadTalk-" + t);
+            Thread threadTalk = new Thread(new TalkThread());
+            threadTalk.start();
+            System.out.println("ThreadTalk-" + t + " is started");
+        }
+        threadsPoolDemo(2);*/
 
-        // threadsPoolDemo(2);
-
+        // ==================================
+        // Example of creating of threads by implements Callable
+        // ==================================
         // System.out.println(callableDemo());
 
-        Thread walkThread = new WalkThread();
+        // ==================================
+        // Example of creating of daemons
+        // ==================================
+        /*Thread walkThread = new WalkThread();
         Thread talkThread = new Thread(new TalkThread());
         talkThread.setDaemon(true);
         walkThread.start();
         talkThread.start(); //If talkTread is slowly than walkThread than talkThread will not be finished and will be interrupted by main thread
+        System.out.println("Main thread is end");*/
+
+        // ==================================
+        // Example of threads exceptions
+        // ==================================
+        Thread threadException = new ThreadException();
+        threadException.start();
+        try {
+            TimeUnit.MILLISECONDS.sleep(100L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("Main thread is end");
     }
 
