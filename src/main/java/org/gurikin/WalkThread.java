@@ -8,9 +8,11 @@ public class WalkThread extends Thread {
         for (int i = 0; i < 5; i++) {
             System.out.println("Walk-" + i);
             try {
-                TimeUnit.MILLISECONDS.sleep(3L);
+                TimeUnit.MILLISECONDS.sleep(10L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } finally {
+                System.out.println("End of WalkThread\t" + i);
             }
         }
     }

@@ -25,7 +25,14 @@ public class ThreadDemo {
 
         // threadsPoolDemo(2);
 
-        System.out.println(callableDemo());
+        // System.out.println(callableDemo());
+
+        Thread walkThread = new WalkThread();
+        Thread talkThread = new Thread(new TalkThread());
+        talkThread.setDaemon(true);
+        walkThread.start();
+        talkThread.start();
+        System.out.println("Main thread is end");
     }
 
     public static void threadsPoolDemo(int poolSize) {
