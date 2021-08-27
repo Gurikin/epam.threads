@@ -46,7 +46,7 @@ public class ThreadDemo {
         // ==================================
         // Example of threads exceptions
         // ==================================
-        Thread threadException = new ThreadException();
+        /*Thread threadException = new ThreadException();
         threadException.start();
         // Example when NOT main thread is interrupted by exception
         // try {
@@ -63,7 +63,10 @@ public class ThreadDemo {
         if (Boolean.TRUE) {
             throw new RuntimeException();
         }
-        System.out.println("Main thread is end");
+        System.out.println("Main thread is end");*/
+        SyncClass syncClass = new SyncClass();
+        // syncClass.syncBlock();
+        syncClass.syncBlockBuffer();
     }
 
     public static void threadsPoolDemo(int poolSize) {
