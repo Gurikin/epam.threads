@@ -64,9 +64,20 @@ public class ThreadDemo {
             throw new RuntimeException();
         }
         System.out.println("Main thread is end");*/
-        SyncClass syncClass = new SyncClass();
+        // ==================================
+        // Example of synchronized
+        // ==================================
+        /*SyncClass syncClass = new SyncClass();
         // syncClass.syncBlock();
-        syncClass.syncBlockBuffer();
+        syncClass.syncBlockBuffer();*/
+
+        // ==================================
+        // Example of deadlock
+        // ==================================
+        InviteAction invite1 = new InviteAction("first");
+        InviteAction invite2 = new InviteAction("second");
+        new Thread(() -> invite1.invite(invite2)).start();
+        new Thread(() -> invite2.invite(invite1)).start();
     }
 
     public static void threadsPoolDemo(int poolSize) {
