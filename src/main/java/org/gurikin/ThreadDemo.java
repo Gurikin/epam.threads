@@ -74,10 +74,23 @@ public class ThreadDemo {
         // ==================================
         // Example of deadlock
         // ==================================
-        InviteAction invite1 = new InviteAction("first");
+        /*InviteAction invite1 = new InviteAction("first");
         InviteAction invite2 = new InviteAction("second");
         new Thread(() -> invite1.invite(invite2)).start();
-        new Thread(() -> invite2.invite(invite1)).start();
+        new Thread(() -> invite2.invite(invite1)).start();*/
+
+        // ==================================
+        // Example of wait/notify
+        // ==================================
+        int i = 0;
+        Payment payment = new Payment("pay-" + i);
+        new Thread(() -> payment.doPayment()).start();
+        try {
+            TimeUnit.MILLISECONDS.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        payment.init();
     }
 
     public static void threadsPoolDemo(int poolSize) {
