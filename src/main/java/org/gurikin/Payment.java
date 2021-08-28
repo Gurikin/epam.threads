@@ -4,13 +4,8 @@ import java.util.Scanner;
 
 public class Payment {
     private int amount;
-    private String name;
 
     public Payment() {
-    }
-
-    public Payment(String name) {
-        this.name = name;
     }
 
     public synchronized void doPayment(String paymentName) {
@@ -23,10 +18,12 @@ public class Payment {
         }
         System.out.println("Released " + paymentName);
     }
-    
+
     public synchronized void init() {
         System.out.println("Init amount:");
-        amount = new Scanner(System.in).nextInt();
+        try (Scanner scanner = new Scanner(System.in)) {
+            amount = scanner.nextInt();
+        }
         notifyAll();
     }
 }
