@@ -6,11 +6,14 @@ public class Payment {
     private int amount;
     private String name;
 
+    public Payment() {
+    }
+
     public Payment(String name) {
         this.name = name;
     }
 
-    public synchronized void doPayment() {
+    public synchronized void doPayment(String paymentName) {
         while (amount <= 0) {
             try {
                 wait();
@@ -18,12 +21,12 @@ public class Payment {
                 e.printStackTrace();
             }
         }
-        System.out.println("Released " + name);
+        System.out.println("Released " + paymentName);
     }
     
     public synchronized void init() {
         System.out.println("Init amount:");
         amount = new Scanner(System.in).nextInt();
-        notify();
+        notifyAll();
     }
 }
